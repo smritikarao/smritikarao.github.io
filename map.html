@@ -1,0 +1,67 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <div>
+            <div>
+            <div id="map" style="width: 500px; height: 400px;"></div>
+            
+            <script src="https://maps.google.com/maps/api/js?key=AIzaSyCZrq3DrdQRZRHC1DHyLeG4QCtCX4RrnRw"></script>
+            </div>|        
+   
+            <script>
+                var locations = [
+    [
+        "ENG 135 clearihue building",
+        48.464337, -123.310386
+    ],
+    [
+    		" PSYCH 100A Maclaurin building",
+        48.462774, -123.313832
+    ],
+    [
+    " BIOL 150A Hickman Building",
+    48.463878, -123.313799
+    ],
+    [
+    "CSC 101 Business and Economics building",
+    48.465452, -123.313141
+    ]
+]
+
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 15,
+      center: new google.maps.LatLng(48.463649,  -123.311951),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) {  
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]+"  "+locations[i][1]+"  "+cnt++);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+    }
+    var cnt = 0;
+    function counting(){
+    cnt++;
+    alert(cnt);
+    }
+
+
+            </script>
+            <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2645.5000910273307!2d-123.31197368449045!3d48.46612053620019!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x548f748552265c6f%3A0x370dd0f42d95e9f6!2sUVic+Bookstore!5e0!3m2!1sen!2sca!4v1508353751442" width="800" height="600" frameborder="0" style="border:0" allowfullscreen></iframe> -->
+   
+    </body>
+</html>
